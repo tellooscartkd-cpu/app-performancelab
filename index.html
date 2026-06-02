@@ -216,7 +216,7 @@
         <span class="nav-icon">◈</span> Ingreso de Tests
       </div>
       <div class="nav-item" onclick="showView('diagnosis')">
-        <span class="nav-icon">◐</span> Diagnóstico IA
+        <span class="nav-icon">◐</span> Diagnóstico
       </div>
       <div class="nav-section">Reportes</div>
       <div class="nav-item" onclick="showView('reports')">
@@ -244,7 +244,7 @@
         <div class="stats-row">
           <div class="stat-card"><div class="stat-label">Total atletas</div><div class="stat-val green" id="dash-total">0</div></div>
           <div class="stat-card"><div class="stat-label">Con tests</div><div class="stat-val orange" id="dash-tested">0</div></div>
-          <div class="stat-card"><div class="stat-label">Diagnósticos IA</div><div class="stat-val" id="dash-diag">0</div></div>
+          <div class="stat-card"><div class="stat-label">Diagnósticos</div><div class="stat-val" id="dash-diag">0</div></div>
           <div class="stat-card"><div class="stat-label">Deportes</div><div class="stat-val" id="dash-sports">0</div></div>
         </div>
         <div class="card">
@@ -455,7 +455,7 @@
     <section class="view" id="view-diagnosis">
       <div class="page-header">
         <div>
-          <div class="page-title">Diagnóstico IA</div>
+          <div class="page-title">Diagnóstico</div>
           <div class="page-sub">Análisis científico generado por inteligencia artificial</div>
         </div>
       </div>
@@ -468,7 +468,7 @@
                 <option value="">— Selecciona un atleta —</option>
               </select>
             </div>
-            <button class="btn btn-primary" onclick="runDiagnosis()">◐ Generar diagnóstico IA</button>
+            <button class="btn btn-primary" onclick="runDiagnosis()">◐ Generar diagnóstico</button>
           </div>
         </div>
         <div id="diag-output"></div>
@@ -858,7 +858,15 @@ Genera el diagnóstico con esta estructura:
 ## KPIs DE SEGUIMIENTO
 ## CONCLUSIÓN TÉCNICA
 
-Sé técnico, científico y preciso.`;
+Sé técnico, científico y preciso.
+
+## REFERENCIAS Y SOPORTES CIENTÍFICOS
+Incluye obligatoriamente al final una sección con 6-10 referencias bibliográficas reales y validadas que respalden los análisis y recomendaciones. Formato:
+- Artículos de revistas indexadas (Journal of Strength and Conditioning Research, Int. Journal of Sports Physiology and Performance, Medicine & Science in Sports & Exercise, European Journal of Sport Science)
+- Libros especializados en fisiología del ejercicio y entrenamiento deportivo
+- Guías de organismos internacionales (ACSM, NSCA, COI)
+- Formato: Autor(es) (Año). Título. Revista/Editorial, Vol(N°), pp.
+Las referencias deben ser pertinentes a las capacidades evaluadas y al deporte analizado.`;
 
   try {
     const res=await fetch('/.netlify/functions/ai',{
@@ -883,7 +891,7 @@ Sé técnico, científico y preciso.`;
     if(inner)inner.innerHTML=`<div style="color:var(--danger);padding:20px;font-size:12px">Error: ${e.message}</div>`;
     toast('Error en diagnóstico IA','error');
   }
-  if(btn){btn.disabled=false;btn.textContent='◐ Generar diagnóstico IA';}
+  if(btn){btn.disabled=false;btn.textContent='◐ Generar diagnóstico';}
 }
 
 function renderDiagnosisResult(id,a,text,ci,ini){
