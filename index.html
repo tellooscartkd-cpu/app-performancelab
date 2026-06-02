@@ -241,10 +241,6 @@
         <button class="btn btn-primary" onclick="showView('athletes'); openNewAthleteModal()">+ Nuevo atleta</button>
       </div>
       <div class="content">
-        <div class="key-banner" id="key-banner">
-          <span>&#9888; Ingresa tu API Key de Anthropic para usar el Diagnostico IA</span>
-          <input type="password" id="apikey-input" placeholder="sk-ant-api03-..." oninput="saveKey(this.value)">
-        </div>
         <div class="stats-row">
           <div class="stat-card"><div class="stat-label">Total atletas</div><div class="stat-val green" id="dash-total">0</div></div>
           <div class="stat-card"><div class="stat-label">Con tests</div><div class="stat-val orange" id="dash-tested">0</div></div>
@@ -808,8 +804,6 @@ function switchTab(name,btn){
 async function runDiagnosis(){
   const id=document.getElementById('diag-athlete-select').value;
   if(!id){toast('Selecciona un atleta','error');return}
-  const apiKey=getKey();
-  if(!apiKey){toast('Ingresa tu API Key en el Dashboard','error');return}
   const a=DB.getAthlete(id);
   const out=document.getElementById('diag-output');
   const btn=document.getElementById('btn-diag');
@@ -867,9 +861,9 @@ Genera el diagnóstico con esta estructura:
 Sé técnico, científico y preciso.`;
 
   try {
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('/.netlify/functions/ai',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:2800,
