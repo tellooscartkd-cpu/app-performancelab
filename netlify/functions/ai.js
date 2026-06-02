@@ -15,7 +15,14 @@ exports.handler = async (event) => {
   }
   try {
     const body = JSON.parse(event.body);
-    const apiKey = process.env.ANTHROPIC_API_KEY || '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';
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      return {
+        statusCode: 500,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ error: { message: 'API key no configurada' } })
+      };
+    }
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
