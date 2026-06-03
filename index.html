@@ -830,7 +830,36 @@ async function runDiagnosis(){
   const testsStr=Object.entries(t).filter(([k,v])=>k!=='notes'&&v!=='').map(([k,v])=>`  - ${k}: ${v}`).join('\n');
   const notesStr=t.notes?`\nObservaciones: ${t.notes}`:'';
 
-  const prompt=`Eres un experto en ciencias del deporte, fisiología del ejercicio y rendimiento deportivo olímpico y mundial. Genera un diagnóstico científico completo del rendimiento físico de este atleta de alto rendimiento.
+  const prompt=`Eres un fisiólogo deportivo PhD con experiencia olímpica. Genera un DIAGNÓSTICO TÉCNICO PROFESIONAL en español.
+
+ATLETA: ${a.name} | ${a.sex||'N/E'} | ${age?age+' años':'N/E'} | ${a.sport} | ${a.level} | ${a.category||'N/E'} | Club: ${a.club||'N/E'} | ${a.country||'N/E'}
+Antecedentes: ${a.history||'Sin registrar'}
+
+TESTS:
+${testsStr||'Sin tests registrados.'}
+${notesStr}
+
+ESTRUCTURA OBLIGATORIA (usa ## para cada sección):
+
+## 1. RESUMEN EJECUTIVO
+Párrafo técnico con clasificación global del atleta (percentil estimado vs élite de su deporte/categoría).
+
+## 2. PERFIL DE CAPACIDADES
+Analiza CADA test registrado comparando contra baremos internacionales del deporte. Clasifica: ÓPTIMO / ACEPTABLE / DEFICIENTE.
+
+## 3. FORTALEZAS Y BRECHAS CRÍTICAS
+Top 3 fortalezas y Top 3 brechas que limitan el rendimiento competitivo.
+
+## 4. PLAN DE ACCIÓN PRIORITARIO
+5-7 recomendaciones específicas con series, repeticiones, métodos concretos. Prioriza las brechas críticas.
+
+## 5. KPIs Y METAS A 8 SEMANAS
+Tabla con indicador actual → meta → método de evaluación.
+
+## 6. REFERENCIAS CIENTÍFICAS
+Mínimo 5 referencias reales: Autor (Año). Título. Revista, Vol(N°), pp. De journals indexados (JSCR, IJSPP, MSSE, EJSS, BJSM).
+
+Sé DIRECTO, técnico y específico. No uses frases genéricas. Cada afirmación debe estar respaldada por evidencia.`;
 
 DATOS DEL ATLETA:
 - Nombre: ${a.name}
@@ -874,7 +903,7 @@ Las referencias deben ser pertinentes a las capacidades evaluadas y al deporte a
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:1400,
+        max_tokens:1600,
         system:'Eres un experto en ciencias del deporte y medicina deportiva para alto rendimiento olímpico. Respondes siempre en español. Usas formato markdown con ## para secciones.',
         messages:[{role:'user',content:prompt}]
       })
