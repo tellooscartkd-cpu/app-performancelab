@@ -724,7 +724,7 @@ async function runDiagnosis(){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:1800,
+        max_tokens:1700,
         system:'Eres un fisiólogo deportivo PhD especialista en alto rendimiento olímpico. Respondes siempre en español. Usas formato markdown con ## para secciones. Eres técnico, preciso y orientado a resultados competitivos.',
         messages:[{role:'user',content:prompt}]
       })
