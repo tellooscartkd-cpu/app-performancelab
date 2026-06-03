@@ -684,9 +684,13 @@ async function callAI(body){
   return data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
 }
 
-function updatePhase(msg){
+function updatePhase(n,msg,detail){
   const el=document.getElementById('diag-phase-msg');
-  if(el) el.textContent=msg;
+  if(el) el.textContent='Fase '+n+'/4 — '+msg;
+  const d=document.getElementById('diag-phase-detail');
+  if(d) d.textContent=detail;
+  const p=document.getElementById('diag-progress');
+  if(p) p.style.width=(n*25)+'%';
 }
 
 async function runDiagnosis(){
@@ -697,12 +701,12 @@ async function runDiagnosis(){
   const ci=(DB.athletes.indexOf(a))%5;
   const ini=a.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
 
-  out.innerHTML='<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden"><div style="padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px"><div style="width:42px;height:42px;border-radius:50%;background:'+AVATAR_COLORS[ci]+';color:'+AVATAR_TEXT[ci]+';display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:13px;flex-shrink:0">'+ini+'</div><div><div style="font-size:15px;font-weight:500">'+a.name+'</div><div style="font-size:11px;color:var(--text2)">'+a.sport+' · '+a.level+(a.category?' · '+a.category:'')+'</div></div></div><div id="diag-body-inner" style="padding:20px"><div style="text-align:center;padding:50px 20px"><div style="width:48px;height:48px;border:2px solid var(--accent);border-radius:50%;margin:0 auto 14px;animation:pulse 1.4s ease infinite"></div><div style="font-size:13px;font-weight:500" id="diag-phase-msg">Fase 1/4 — Evaluando perfil físico vs baremos...</div><div style="font-size:11px;color:var(--text2);margin-top:6px" id="diag-phase-detail">Consultando referencias científicas internacionales</div><div style="margin-top:16px;background:var(--bg3);border-radius:6px;height:6px;width:200px;margin-left:auto;margin-right:auto;overflow:hidden"><div id="diag-progress" style="height:100%;background:var(--accent);width:5%;transition:width 0.5s ease;border-radius:6px"></div></div></div></div></div>';
+  out.innerHTML='<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden"><div style="padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px"><div style="width:42px;height:42px;border-radius:50%;background:'+AVATAR_COLORS[ci]+';color:'+AVATAR_TEXT[ci]+';display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:13px;flex-shrink:0">'+ini+'</div><div><div style="font-size:15px;font-weight:500">'+a.name+'</div><div style="font-size:11px;color:var(--text2)">'+a.sport+' · '+a.level+(a.category?' · '+a.category:'')+'</div></div></div><div id="diag-body-inner" style="padding:20px"><div style="text-align:center;padding:50px 20px"><div style="width:48px;height:48px;border:2px solid var(--accent);border-radius:50%;margin:0 auto 14px;animation:pulse 1.4s ease infinite"></div><div style="font-size:13px;font-weight:500" id="diag-phase-msg">Fase 1/4 — Evaluando perfil físico...</div><div style="font-size:11px;color:var(--text2);margin-top:6px" id="diag-phase-detail">Consultando baremos internacionales</div><div style="margin-top:16px;background:var(--bg3);border-radius:6px;height:6px;width:200px;margin-left:auto;margin-right:auto;overflow:hidden"><div id="diag-progress" style="height:100%;background:var(--accent);width:5%;transition:width 0.5s ease;border-radius:6px"></div></div></div></div></div>';
 
   const age=a.dob?Math.floor((Date.now()-new Date(a.dob))/(365.25*24*3600*1000)):null;
   const t=a.tests||{};
   const testsStr=Object.entries(t).filter(([k,v])=>k!=='notes'&&v!=='').map(([k,v])=>'  - '+k+': '+v).join('\n');
-  const notesStr=t.notes?'\nObservaciones: '+t.notes:'';
+  const notesStr=t.notes?'\nObs: '+t.notes:'';
 
   let weeksToEvent='No definido';
   if(a.eventDate){
@@ -710,166 +714,44 @@ async function runDiagnosis(){
     weeksToEvent=diff>0?diff+' semanas':'Evento pasado';
   }
 
-  const athleteContext='ATLETA: '+a.name+' | '+a.sex+' | '+(age?age+' años':'N/E')+' | '+a.sport+' | '+a.level+' | '+(a.category||'N/E')+'\n'+
-  'Club: '+(a.club||'N/E')+' | País: '+(a.country||'N/E')+'\n'+
-  'EVENTO OBJETIVO: '+(a.event||'No definido')+'\n'+
-  'FECHA DEL EVENTO: '+(a.eventDate||'No definida')+' ('+weeksToEvent+' desde hoy)\n'+
-  'MODELO DE PERIODIZACIÓN: '+(a.periodModel||'No seleccionado — usa el más apropiado para el deporte')+'\n'+
-  'Antecedentes: '+(a.history||'Sin registrar')+'\n\n'+
-  'TESTS FÍSICOS:\n'+(testsStr||'Sin tests registrados.')+'\n'+notesStr;
+  const ctx=a.name+' | '+a.sex+' | '+(age||'?')+' años | '+a.sport+' | '+a.level+' | '+(a.category||'')+' | Club:'+(a.club||'N/E')+' | '+(a.country||'')+'\nEvento: '+(a.event||'N/D')+' | Fecha: '+(a.eventDate||'N/D')+' ('+weeksToEvent+')\nPeriodización: '+(a.periodModel||'la más apropiada')+'\nAntecedentes: '+(a.history||'Sin registrar')+'\nTests:\n'+(testsStr||'Sin tests')+notesStr;
 
-  const sysMsg='Eres un fisiólogo deportivo PhD con publicaciones en journals indexados (JSCR, IJSPP, MSSE), especialista en alto rendimiento olímpico y mundial. Respondes siempre en español. Usas formato markdown con ## para secciones. TODAS tus afirmaciones deben estar respaldadas por evidencia científica verificable. Cuando cites un baremo, indica el autor y año. Cuando recomiendes un método, cita la fuente que lo valida. Sé técnico, preciso, directo. Cada prescripción incluye dosis concreta (ejercicio, series, reps, %, pausa, frecuencia).';
+  const sys='Fisiólogo deportivo PhD, alto rendimiento olímpico. Español. Markdown con ##. Técnico, directo, cada afirmación con fuente científica (autor, año). Prescripciones con dosis: ejercicio, series x reps, %, pausa, frecuencia.';
 
   try {
-    // ══════════════════════════════════════════════════
-    // FASE 1/4: RESUMEN EJECUTIVO + PERFIL vs BAREMOS
-    // ══════════════════════════════════════════════════
-    const prompt1='Genera la FASE 1 del diagnóstico técnico profesional.\n\n'+athleteContext+'\n\n'+
-    'GENERA EXACTAMENTE ESTAS SECCIONES:\n\n'+
-    '## 1. RESUMEN EJECUTIVO\n'+
-    'Clasificación global del atleta: percentil estimado vs población élite de su deporte, categoría y sexo. Cita la fuente del baremo utilizado (ej: Bridge et al. 2014, Santos et al. 2020, Haddad et al. 2014). Diagnóstico en una frase contundente que resuma el estado actual y la viabilidad competitiva para el evento objetivo.\n\n'+
-    '## 2. PERFIL DE CAPACIDADES vs BAREMOS INTERNACIONALES\n'+
-    'Analiza CADA test registrado con esta estructura obligatoria:\n'+
-    '- Nombre del test\n'+
-    '- Valor actual del atleta\n'+
-    '- Rango élite internacional (citando autor, año y muestra del estudio)\n'+
-    '- Clasificación: ÓPTIMO / ACEPTABLE / DEFICIENTE\n'+
-    '- Déficit porcentual vs estándar élite\n'+
-    '- Implicación funcional para el deporte\n\n'+
-    'Agrupa por capacidad: FUERZA MÁXIMA, POTENCIA EXPLOSIVA, CAPACIDAD AERÓBICA, VELOCIDAD, FLEXIBILIDAD, COMPOSICIÓN CORPORAL, COORDINACIÓN (según los tests disponibles).\n'+
-    'OBLIGATORIO: cada baremo debe tener autor y año verificable.\n\n'+
-    'Sé DIRECTO, técnico. Cada afirmación con datos numéricos y fuente.';
-
-    const text1=await callAI({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:1200,
-      system:sysMsg,
-      messages:[{role:'user',content:prompt1}]
+    // ═══ FASE 1: RESUMEN + PERFIL vs BAREMOS ═══
+    const t1=await callAI({
+      model:'claude-sonnet-4-20250514', max_tokens:1200, system:sys,
+      messages:[{role:'user',content:'Diagnóstico técnico FASE 1.\n\n'+ctx+'\n\nGenera:\n\n## 1. RESUMEN EJECUTIVO\nPercentil vs élite del deporte/categoría/sexo. Cita fuente del baremo. Diagnóstico en 1 frase.\n\n## 2. PERFIL DE CAPACIDADES vs BAREMOS\nCada test: valor actual | rango élite (autor, año) | ÓPTIMO/ACEPTABLE/DEFICIENTE | déficit %. Agrupa por capacidad.'}]
     });
 
-    // ══════════════════════════════════════════════════
-    // FASE 2/4: FORTALEZAS + BRECHAS CRÍTICAS
-    // ══════════════════════════════════════════════════
-    updatePhase('Fase 2/4 — Identificando fortalezas y brechas...');
-    const prog=document.getElementById('diag-progress');
-    if(prog) prog.style.width='30%';
-    const detail=document.getElementById('diag-phase-detail');
-    if(detail) detail.textContent='Comparando contra modelo competitivo del deporte';
-
-    const prompt2='Genera la FASE 2 del diagnóstico. Continúa directamente (NO repitas secciones anteriores).\n\n'+
-    'CONTEXTO:\n'+athleteContext+'\n\n'+
-    'ANÁLISIS PREVIO (Fase 1):\n'+text1.substring(0,500)+'...\n\n'+
-    'GENERA EXACTAMENTE ESTAS SECCIONES:\n\n'+
-    '## 3. TOP 3 FORTALEZAS IDENTIFICADAS\n'+
-    'Para cada fortaleza incluye:\n'+
-    '- Capacidad y test específico con valor numérico\n'+
-    '- Percentil estimado dentro de la población del deporte/categoría\n'+
-    '- Relevancia funcional: cómo esta fortaleza se traduce en ventaja competitiva real en combate/competencia\n'+
-    '- Evidencia: cita el estudio que establece la correlación entre esta capacidad y el rendimiento en el deporte (autor, año, hallazgo principal)\n'+
-    '- Estrategia de potenciación: cómo explotar esta fortaleza en competencia\n\n'+
-    '## 4. TOP 3 BRECHAS CRÍTICAS DE RENDIMIENTO\n'+
-    'Para cada brecha incluye:\n'+
-    '- Capacidad y test específico con valor numérico vs estándar élite\n'+
-    '- Déficit porcentual exacto\n'+
-    '- Impacto competitivo: cómo este déficit limita concretamente el rendimiento en situaciones reales de competencia (ej: fatiga en 3er asalto, incapacidad de mantener frecuencia de patadas, etc.)\n'+
-    '- Evidencia: cita el estudio que demuestra la importancia de esta capacidad para el rendimiento en el deporte (autor, año)\n'+
-    '- Prioridad de intervención: URGENTE / ALTA / MODERADA con justificación\n\n'+
-    '## 5. ANÁLISIS DEL MODELO COMPETITIVO\n'+
-    'Describe el perfil fisiológico ideal del competidor élite en este deporte/categoría/sexo según la literatura científica. Compara el perfil actual del atleta contra este modelo ideal. Identifica las brechas más críticas que separan al atleta del modelo competitivo. Cita las fuentes que definen este modelo (mínimo 2 autores).\n\n'+
-    'OBLIGATORIO: cada afirmación respaldada con autor y año.';
-
-    const text2=await callAI({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:1500,
-      system:sysMsg,
-      messages:[{role:'user',content:prompt2}]
+    // ═══ FASE 2: FORTALEZAS + BRECHAS + MODELO ═══
+    updatePhase(2,'Analizando fortalezas y brechas...','Comparando contra modelo competitivo');
+    const t2=await callAI({
+      model:'claude-sonnet-4-20250514', max_tokens:1200, system:sys,
+      messages:[{role:'user',content:'Diagnóstico FASE 2. Continúa (NO repitas fase 1).\n\n'+ctx+'\n\nGenera:\n\n## 3. TOP 3 FORTALEZAS\nCada una: capacidad, valor, percentil, ventaja competitiva real, estudio que correlaciona esta capacidad con rendimiento (autor, año).\n\n## 4. TOP 3 BRECHAS CRÍTICAS\nCada una: capacidad, déficit %, impacto en competencia real, estudio de soporte (autor, año), prioridad URGENTE/ALTA/MODERADA.\n\n## 5. MODELO COMPETITIVO\nPerfil fisiológico ideal del competidor élite en este deporte/categoría/sexo según literatura (mín 2 autores). Comparar perfil actual vs ideal.'}]
     });
 
-    // ══════════════════════════════════════════════════
-    // FASE 3/4: PLAN DE PREPARACIÓN HACIA EL EVENTO
-    // ══════════════════════════════════════════════════
-    updatePhase('Fase 3/4 — Diseñando plan de preparación...');
-    if(prog) prog.style.width='55%';
-    if(detail) detail.textContent='Aplicando modelo de periodización: '+(a.periodModel?a.periodModel.split('—')[0].trim():'óptimo para el deporte');
-
-    const prompt3='Genera la FASE 3 del diagnóstico. Continúa directamente (NO repitas secciones anteriores).\n\n'+
-    'CONTEXTO:\n'+athleteContext+'\n\n'+
-    'BRECHAS IDENTIFICADAS (Fase 2):\n'+text2.substring(0,500)+'...\n\n'+
-    'GENERA EXACTAMENTE ESTA SECCIÓN:\n\n'+
-    '## 6. PLAN DE PREPARACIÓN HACIA EL EVENTO\n'+
-    'Modelo de periodización: '+(a.periodModel||'Selecciona el más apropiado para el deporte y justifica la elección')+'\n'+
-    'Tiempo disponible: '+weeksToEvent+' hasta el evento.\n\n'+
-    'Diseña la distribución COMPLETA de fases/bloques/mesociclos desde HOY hasta el evento.\n'+
-    'Para CADA fase/bloque incluye OBLIGATORIAMENTE:\n'+
-    '- Nombre de la fase (usando la terminología del modelo de periodización seleccionado)\n'+
-    '- Duración exacta en semanas\n'+
-    '- Objetivo principal de la fase con justificación científica\n'+
-    '- Capacidades a desarrollar (contenidos prioritarios ordenados)\n'+
-    '- PRESCRIPCIÓN DETALLADA por día tipo de la semana:\n'+
-    '  * Ejercicio específico\n'+
-    '  * Series x Repeticiones\n'+
-    '  * Intensidad (% 1RM, % FC, RPE, o m/s según corresponda)\n'+
-    '  * Pausa entre series\n'+
-    '  * Frecuencia semanal\n'+
-    '- Volumen total semanal e intensidad relativa de la fase\n'+
-    '- Indicadores de control para pasar a la siguiente fase\n\n'+
-    'Al final incluye un RESUMEN DE LA DINÁMICA DE CARGAS: tabla con Fase | Semanas | Volumen relativo (%) | Intensidad relativa (%) | Foco principal\n\n'+
-    'OBLIGATORIO: cada método de entrenamiento prescrito debe estar validado científicamente. Cita autor y año junto a cada método (ej: "método de contrastes, Cometti 1998", "pliometría de alta intensidad, Markovic & Mikulic 2010").';
-
-    const text3=await callAI({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:1500,
-      system:sysMsg,
-      messages:[{role:'user',content:prompt3}]
+    // ═══ FASE 3: PLAN DE PREPARACIÓN ═══
+    updatePhase(3,'Diseñando plan de preparación...','Modelo: '+(a.periodModel?a.periodModel.split('—')[0].trim():'óptimo'));
+    const t3=await callAI({
+      model:'claude-sonnet-4-20250514', max_tokens:1200, system:sys,
+      messages:[{role:'user',content:'Diagnóstico FASE 3. Continúa (NO repitas fases anteriores).\n\n'+ctx+'\n\nGenera:\n\n## 6. PLAN DE PREPARACIÓN HACIA EL EVENTO\nModelo: '+(a.periodModel||'el más apropiado')+'. Tiempo: '+weeksToEvent+'.\nPara CADA fase/bloque:\n- Nombre (terminología del modelo), duración en semanas\n- Objetivo con justificación científica\n- Prescripción por día tipo: ejercicio, series x reps, % intensidad, pausa, frecuencia/semana. Cita método (autor, año).\n- Volumen e intensidad relativa\n- Criterio para pasar a siguiente fase\n\nAl final: tabla resumen Fase|Semanas|Volumen%|Intensidad%|Foco'}]
     });
 
-    // ══════════════════════════════════════════════════
-    // FASE 4/4: KPIs + CONCLUSIÓN + REFERENCIAS
-    // ══════════════════════════════════════════════════
-    updatePhase('Fase 4/4 — Generando KPIs, conclusión y referencias...');
-    if(prog) prog.style.width='80%';
-    if(detail) detail.textContent='Compilando referencias científicas verificables';
-
-    const prompt4='Genera la FASE 4 (FINAL) del diagnóstico. Continúa directamente (NO repitas secciones anteriores).\n\n'+
-    'CONTEXTO:\n'+athleteContext+'\n\n'+
-    'RESUMEN DEL PLAN (Fase 3):\n'+text3.substring(0,400)+'...\n\n'+
-    'GENERA EXACTAMENTE ESTAS SECCIONES:\n\n'+
-    '## 7. KPIs Y METAS CUANTIFICABLES PARA EL EVENTO\n'+
-    'Tabla con MÍNIMO 8 indicadores:\n'+
-    'Indicador | Valor actual | Meta para el evento | % de mejora esperado | Método de evaluación | Plazo de evaluación\n'+
-    'Incluye indicadores de: fuerza, potencia, resistencia, velocidad, composición corporal, y al menos 1 indicador específico del deporte. Las metas deben ser realistas para el tiempo disponible ('+weeksToEvent+'), basadas en tasas de mejora reportadas en la literatura (cita la fuente de la tasa de mejora esperada).\n\n'+
-    '## 8. CONCLUSIÓN TÉCNICA\n'+
-    'Síntesis final de 2-3 párrafos que incluya:\n'+
-    '- Estado actual del atleta en el contexto de su deporte y nivel competitivo\n'+
-    '- Las 3 prioridades de intervención más importantes con justificación\n'+
-    '- Pronóstico competitivo realista para el evento objetivo si se ejecuta el plan propuesto\n'+
-    '- Factores de riesgo a monitorear (lesiones, sobreentrenamiento, peso competitivo)\n'+
-    '- Recomendación final clara y directa para el entrenador\n\n'+
-    '## 9. REFERENCIAS CIENTÍFICAS\n'+
-    'MÍNIMO 8 referencias bibliográficas REALES y verificables en formato APA:\n'+
-    'Autor(es) (Año). Título completo del artículo. Nombre completo de la revista, Volumen(Número), páginas.\n\n'+
-    'OBLIGATORIO incluir referencias de:\n'+
-    '- Baremos y perfiles fisiológicos del deporte específico (mínimo 2)\n'+
-    '- Métodos de entrenamiento prescritos (mínimo 2)\n'+
-    '- Modelo de periodización utilizado (mínimo 1)\n'+
-    '- Tasas de mejora y adaptación fisiológica (mínimo 1)\n'+
-    '- Journals aceptados: JSCR, IJSPP, MSSE, EJSS, BJSM, Sports Medicine, J Sports Sci, Scand J Med Sci Sports\n\n'+
-    'NO inventes referencias. Si no estás seguro de un dato exacto (volumen, páginas), indica el autor, año y revista correctos.';
-
-    const text4=await callAI({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:1500,
-      system:sysMsg,
-      messages:[{role:'user',content:prompt4}]
+    // ═══ FASE 4: KPIs + CONCLUSIÓN + REFERENCIAS ═══
+    updatePhase(4,'Conclusión y referencias...','Compilando evidencia científica');
+    const t4=await callAI({
+      model:'claude-sonnet-4-20250514', max_tokens:1200, system:sys,
+      messages:[{role:'user',content:'Diagnóstico FASE 4 (FINAL). Continúa (NO repitas fases anteriores).\n\n'+ctx+'\n\nGenera:\n\n## 7. KPIs Y METAS PARA EL EVENTO\nTabla 8+ indicadores: Indicador|Actual|Meta|% mejora|Evaluación|Plazo. Metas realistas para '+weeksToEvent+', basadas en tasas de mejora de la literatura.\n\n## 8. CONCLUSIÓN TÉCNICA\n2-3 párrafos: estado actual, 3 prioridades de intervención, pronóstico competitivo realista para el evento, factores de riesgo, recomendación directa al entrenador.\n\n## 9. REFERENCIAS CIENTÍFICAS\n8-10 refs reales formato APA: Autor (Año). Título. Revista, Vol(N), pp.\nIncluir: baremos del deporte (2+), métodos prescritos (2+), modelo periodización (1+), tasas de mejora (1+). Journals: JSCR, IJSPP, MSSE, EJSS, BJSM, Sports Med, J Sports Sci.'}]
     });
 
-    // ══════ COMBINAR LAS 4 FASES ══════
-    if(prog) prog.style.width='100%';
-    const fullText=text1+'\n\n'+text2+'\n\n'+text3+'\n\n'+text4;
+    // ═══ COMBINAR 4 FASES ═══
+    const fullText=t1+'\n\n'+t2+'\n\n'+t3+'\n\n'+t4;
     DB.updateAthlete(id,{diagnosis:fullText});
     renderDiagnosisResult(id,a,fullText,ci,ini);
     renderDashboard();
-    toast('Diagnóstico completo generado — 4 fases');
+    toast('Diagnóstico completo — 4 fases, 9 secciones');
   } catch(e){
     const inner=document.getElementById('diag-body-inner');
     if(inner)inner.innerHTML='<div style="color:var(--danger);padding:20px;font-size:12px">Error: '+e.message+'</div>';
