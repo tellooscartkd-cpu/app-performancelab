@@ -1,3 +1,5 @@
+const https = require('https');
+
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -25,27 +27,44 @@ exports.handler = async (event) => {
       };
     }
 
-    const body = JSON.parse(event.body);
+    const requestBody = event.body;
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify(body)
+    const data = await new Promise((resolve, reject) => {
+      const options = {
+        hostname: 'api.anthropic.com',
+        path: '/v1/messages',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01'
+        }
+      };
+
+      const req = https.request(options, (res) => {
+        let body = '';
+        res.on('data', (chunk) => { body += chunk; });
+        res.on('end', () => {
+          try {
+            resolve({ status: res.statusCode, data: JSON.parse(body) });
+          } catch (e) {
+            reject(new Error('Respuesta invalida de la API'));
+          }
+        });
+      });
+
+      req.on('error', reject);
+      req.write(requestBody);
+      req.end();
     });
 
-    const data = await response.json();
-
     return {
-      statusCode: response.status,
+      statusCode: data.status,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data.data)
     };
   } catch (err) {
     return {
