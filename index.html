@@ -742,7 +742,7 @@ async function runDiagnosis(){
 
     const text1=await callAI({
       model:'claude-sonnet-4-20250514',
-      max_tokens:1500,
+      max_tokens:1200,
       system:sysMsg,
       messages:[{role:'user',content:prompt1}]
     });
