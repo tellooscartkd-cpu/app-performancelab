@@ -30,13 +30,9 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
-
-  /* LAYOUT */
   .app { display: flex; height: 100vh; overflow: hidden; }
   .sidebar { width: 240px; background: var(--bg2); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
   .main { flex: 1; overflow-y: auto; }
-
-  /* SIDEBAR */
   .sidebar-logo { padding: 24px 20px 16px; }
   .logo-mark { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
   .logo-name { font-size: 18px; font-weight: 600; color: var(--text); margin-top: 4px; }
@@ -49,8 +45,6 @@
   .sidebar-footer { padding: 16px 20px; border-top: 1px solid var(--border); }
   .athlete-count { font-size: 12px; color: var(--text2); }
   .athlete-count strong { color: var(--accent); font-family: var(--mono); }
-
-  /* HEADER */
   .page-header { padding: 32px 40px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--bg); z-index: 10; }
   .page-title { font-size: 22px; font-weight: 500; }
   .page-sub { font-size: 13px; color: var(--text2); margin-top: 3px; }
@@ -62,21 +56,13 @@
   .btn-danger { background: rgba(255,71,87,0.15); color: var(--danger); border: 1px solid rgba(255,71,87,0.3); }
   .btn-danger:hover { background: rgba(255,71,87,0.25); }
   .btn-sm { padding: 6px 12px; font-size: 12px; }
-
-  /* CONTENT */
   .content { padding: 32px 40px; }
-
-  /* VIEWS */
   .view { display: none; }
   .view.active { display: block; }
-
-  /* CARDS */
   .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; }
   .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
   .card-title { font-size: 14px; font-weight: 500; color: var(--text); }
   .card-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
-
-  /* ATHLETE GRID */
   .athlete-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
   .athlete-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: all 0.15s; position: relative; overflow: hidden; }
   .athlete-card:hover { border-color: var(--border2); transform: translateY(-2px); }
@@ -90,28 +76,22 @@
   .tag-sport { background: rgba(0,112,243,0.15); color: #60a5fa; }
   .tag-level { background: rgba(0,229,176,0.1); color: var(--accent); }
   .tag-cat { background: rgba(255,107,53,0.12); color: #fb923c; }
-
-  /* FORMS */
   .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group label { font-size: 12px; color: var(--text2); font-weight: 500; letter-spacing: 0.02em; }
   .form-group input, .form-group select, .form-group textarea {
-    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; 
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
     padding: 10px 14px; font-size: 14px; color: var(--text); font-family: var(--font);
     transition: border-color 0.15s; outline: none;
   }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
   .form-group select option { background: var(--bg3); }
   .form-group textarea { resize: vertical; min-height: 80px; }
-
-  /* SECTION TABS */
   .section-tabs { display: flex; gap: 4px; background: var(--bg3); padding: 4px; border-radius: 10px; margin-bottom: 24px; }
   .tab-btn { flex: 1; padding: 8px 12px; border-radius: 7px; border: none; background: none; color: var(--text2); font-size: 13px; cursor: pointer; transition: all 0.15s; font-family: var(--font); }
   .tab-btn.active { background: var(--bg2); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
   .tab-pane { display: none; }
   .tab-pane.active { display: block; }
-
-  /* TEST INPUTS */
   .test-section { margin-bottom: 28px; }
   .test-section-title { font-size: 11px; font-family: var(--mono); letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
   .test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
@@ -120,18 +100,12 @@
   .test-field input { width: 100%; background: none; border: none; border-bottom: 1px solid var(--border); padding: 4px 0; font-size: 16px; font-weight: 500; color: var(--text); font-family: var(--mono); outline: none; }
   .test-field input:focus { border-bottom-color: var(--accent); }
   .test-field-unit { font-size: 10px; color: var(--text3); margin-top: 4px; }
-
-  /* DIAGNOSIS */
   .diag-container { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); }
   .diag-header { padding: 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
   .diag-athlete-info h3 { font-size: 18px; font-weight: 500; }
   .diag-athlete-info p { font-size: 13px; color: var(--text2); margin-top: 3px; }
   .diag-actions { margin-left: auto; display: flex; gap: 8px; }
   .diag-body { padding: 24px; }
-  .diag-loading { text-align: center; padding: 60px 24px; }
-  .pulse-ring { width: 56px; height: 56px; border: 2px solid var(--accent); border-radius: 50%; margin: 0 auto 16px; animation: pulse 1.5s ease infinite; }
-  @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.15);opacity:0.5} }
-  .diag-status { font-size: 13px; color: var(--text2); margin-top: 8px; }
   .diag-result { white-space: pre-wrap; font-size: 14px; line-height: 1.75; color: var(--text); }
   .diag-result h2 { font-size: 15px; font-weight: 600; color: var(--accent); margin: 20px 0 8px; font-family: var(--mono); }
   .diag-result h3 { font-size: 14px; font-weight: 600; color: var(--text); margin: 16px 0 6px; }
@@ -139,8 +113,6 @@
   .diag-result li { margin-bottom: 4px; }
   .diag-result strong { color: var(--accent); }
   .diag-result em { color: var(--warn); font-style: normal; }
-
-  /* STATS */
   .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
   .stat-card { background: var(--bg3); border-radius: 8px; padding: 16px; }
   .stat-label { font-size: 11px; color: var(--text2); margin-bottom: 6px; }
@@ -148,18 +120,10 @@
   .stat-val.green { color: var(--accent); }
   .stat-val.orange { color: var(--warn); }
   .stat-val.red { color: var(--danger); }
-
-  /* RADAR */
-  .radar-wrap { display: flex; justify-content: center; margin: 16px 0; }
-  canvas.radar { max-width: 300px; }
-
-  /* EMPTY STATE */
   .empty-state { text-align: center; padding: 80px 24px; }
   .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.3; }
   .empty-title { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
   .empty-sub { font-size: 13px; color: var(--text2); }
-
-  /* MODAL */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; display: none; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--bg2); border: 1px solid var(--border2); border-radius: 14px; width: min(600px, 90vw); max-height: 85vh; overflow-y: auto; }
@@ -167,28 +131,15 @@
   .modal-head h2 { font-size: 17px; font-weight: 500; }
   .modal-body { padding: 24px; }
   .modal-foot { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px; }
-
-  /* BADGE */
   .badge { display: inline-block; font-size: 10px; font-family: var(--mono); padding: 2px 8px; border-radius: 4px; }
   .badge-success { background: rgba(0,229,176,0.12); color: var(--accent); }
   .badge-warn { background: rgba(255,165,2,0.12); color: var(--warn); }
   .badge-danger { background: rgba(255,71,87,0.12); color: var(--danger); }
-
-  /* DIVIDER */
-  .divider { height: 1px; background: var(--border); margin: 24px 0; }
-
-  /* NOTIFICATION */
   .toast { position: fixed; bottom: 24px; right: 24px; background: var(--bg3); border: 1px solid var(--border2); border-radius: 10px; padding: 14px 20px; font-size: 13px; z-index: 999; transform: translateY(80px); opacity: 0; transition: all 0.3s; max-width: 300px; }
   .toast.show { transform: translateY(0); opacity: 1; }
   .toast.success { border-left: 3px solid var(--accent); }
   .toast.error { border-left: 3px solid var(--danger); }
-
-
-  .key-banner{background:rgba(255,165,2,0.1);border:1px solid rgba(255,165,2,0.3);border-radius:8px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  .key-banner span{font-size:12px;color:var(--warn);flex:1}
-  .key-banner input{background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:7px 12px;font-size:12px;color:var(--text);font-family:var(--mono);width:280px;outline:none}
-  .key-banner input:focus{border-color:var(--accent)}
-  /* SCROLLBAR */
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.15);opacity:0.5} }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--bg2); }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
@@ -197,7 +148,6 @@
 <body>
 
 <div class="app">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-mark">◆ Sistema</div>
@@ -205,39 +155,25 @@
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">Principal</div>
-      <div class="nav-item active" onclick="showView('dashboard')">
-        <span class="nav-icon">⬛</span> Dashboard
-      </div>
-      <div class="nav-item" onclick="showView('athletes')">
-        <span class="nav-icon">◉</span> Atletas
-      </div>
+      <div class="nav-item active" onclick="showView('dashboard')"><span class="nav-icon">⬛</span> Dashboard</div>
+      <div class="nav-item" onclick="showView('athletes')"><span class="nav-icon">◉</span> Atletas</div>
       <div class="nav-section">Evaluación</div>
-      <div class="nav-item" onclick="showView('tests')">
-        <span class="nav-icon">◈</span> Ingreso de Tests
-      </div>
-      <div class="nav-item" onclick="showView('diagnosis')">
-        <span class="nav-icon">◐</span> Diagnóstico
-      </div>
+      <div class="nav-item" onclick="showView('tests')"><span class="nav-icon">◈</span> Ingreso de Tests</div>
+      <div class="nav-item" onclick="showView('diagnosis')"><span class="nav-icon">◐</span> Diagnóstico</div>
       <div class="nav-section">Reportes</div>
-      <div class="nav-item" onclick="showView('reports')">
-        <span class="nav-icon">▣</span> Informes PDF
-      </div>
+      <div class="nav-item" onclick="showView('reports')"><span class="nav-icon">▣</span> Informes PDF</div>
     </nav>
     <div class="sidebar-footer">
       <div class="athlete-count">Atletas registrados: <strong id="sidebarCount">0</strong></div>
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
 
     <!-- DASHBOARD -->
     <section class="view active" id="view-dashboard">
       <div class="page-header">
-        <div>
-          <div class="page-title">Dashboard</div>
-          <div class="page-sub">Resumen del sistema de evaluación</div>
-        </div>
+        <div><div class="page-title">Dashboard</div><div class="page-sub">Resumen del sistema de evaluación</div></div>
         <button class="btn btn-primary" onclick="showView('athletes'); openNewAthleteModal()">+ Nuevo atleta</button>
       </div>
       <div class="content">
@@ -254,7 +190,7 @@
         <div class="card">
           <div class="card-header"><div><div class="card-title">Acerca de este sistema</div></div></div>
           <div style="font-size:14px;line-height:1.8;color:var(--text2)">
-            <strong style="color:var(--text)">PerformanceLab</strong> es un sistema integral de evaluación del rendimiento deportivo para atletas de alto rendimiento olímpico y mundial. 
+            <strong style="color:var(--text)">PerformanceLab</strong> es un sistema integral de evaluación del rendimiento deportivo para atletas de alto rendimiento olímpico y mundial.
             Registra atletas, ingresa resultados de tests físicos validados científicamente, genera diagnósticos con inteligencia artificial y exporta informes profesionales en PDF.<br><br>
             Capacidades evaluadas: <span style="color:var(--accent)">Fuerza · Potencia · Resistencia · Velocidad · Flexibilidad · Composición corporal · Capacidades coordinativas</span>
           </div>
@@ -265,32 +201,22 @@
     <!-- ATHLETES -->
     <section class="view" id="view-athletes">
       <div class="page-header">
-        <div>
-          <div class="page-title">Atletas</div>
-          <div class="page-sub">Gestión de deportistas registrados</div>
-        </div>
+        <div><div class="page-title">Atletas</div><div class="page-sub">Gestión de deportistas registrados</div></div>
         <button class="btn btn-primary" onclick="openNewAthleteModal()">+ Nuevo atleta</button>
       </div>
-      <div class="content">
-        <div id="athletes-list"></div>
-      </div>
+      <div class="content"><div id="athletes-list"></div></div>
     </section>
 
     <!-- TESTS -->
     <section class="view" id="view-tests">
       <div class="page-header">
-        <div>
-          <div class="page-title">Ingreso de Tests Físicos</div>
-          <div class="page-sub">Registro de resultados por capacidades condicionales</div>
-        </div>
+        <div><div class="page-title">Ingreso de Tests Físicos</div><div class="page-sub">Registro de resultados por capacidades condicionales</div></div>
       </div>
       <div class="content">
         <div class="card" style="margin-bottom:20px">
           <div class="form-group">
             <label>Seleccionar atleta</label>
-            <select id="tests-athlete-select" onchange="loadAthleteTests()">
-              <option value="">— Selecciona un atleta —</option>
-            </select>
+            <select id="tests-athlete-select" onchange="loadAthleteTests()"><option value="">— Selecciona un atleta —</option></select>
           </div>
         </div>
         <div id="tests-form-container" style="display:none">
@@ -304,7 +230,6 @@
             <button class="tab-btn" onclick="switchTab('cordinativa',this)">Coordinación</button>
           </div>
 
-          <!-- FUERZA -->
           <div class="tab-pane active" id="tab-fuerza">
             <div class="test-section">
               <div class="test-section-title">Fuerza Máxima</div>
@@ -325,7 +250,6 @@
             </div>
           </div>
 
-          <!-- POTENCIA -->
           <div class="tab-pane" id="tab-potencia">
             <div class="test-section">
               <div class="test-section-title">Tests de Salto (CMJ / SJ / DJ)</div>
@@ -347,7 +271,6 @@
             </div>
           </div>
 
-          <!-- RESISTENCIA -->
           <div class="tab-pane" id="tab-resistencia">
             <div class="test-section">
               <div class="test-section-title">Capacidad Aeróbica</div>
@@ -370,7 +293,6 @@
             </div>
           </div>
 
-          <!-- VELOCIDAD -->
           <div class="tab-pane" id="tab-velocidad">
             <div class="test-section">
               <div class="test-section-title">Velocidad de Desplazamiento</div>
@@ -392,7 +314,6 @@
             </div>
           </div>
 
-          <!-- FLEXIBILIDAD -->
           <div class="tab-pane" id="tab-flexibilidad">
             <div class="test-section">
               <div class="test-section-title">Flexibilidad General</div>
@@ -406,7 +327,6 @@
             </div>
           </div>
 
-          <!-- COMPOSICIÓN CORPORAL -->
           <div class="tab-pane" id="tab-corporal">
             <div class="test-section">
               <div class="test-section-title">Antropometría y Composición Corporal</div>
@@ -423,7 +343,6 @@
             </div>
           </div>
 
-          <!-- COORDINATIVA -->
           <div class="tab-pane" id="tab-cordinativa">
             <div class="test-section">
               <div class="test-section-title">Capacidades Coordinativas</div>
@@ -437,14 +356,12 @@
             </div>
             <div class="test-section">
               <div class="test-section-title">Observaciones de los tests</div>
-              <div class="form-group">
-                <textarea id="t_notes" placeholder="Condiciones del test, observaciones del evaluador, factores que pudieron influir en los resultados..."></textarea>
-              </div>
+              <div class="form-group"><textarea id="t_notes" placeholder="Condiciones del test, observaciones del evaluador..."></textarea></div>
             </div>
           </div>
 
           <div style="margin-top:24px; display:flex; gap:12px">
-            <button class="btn btn-primary" onclick="saveTests()">💾 Guardar tests</button>
+            <button class="btn btn-primary" onclick="saveTests()">Guardar tests</button>
             <button class="btn btn-ghost" onclick="clearTests()">Limpiar campos</button>
           </div>
         </div>
@@ -454,19 +371,14 @@
     <!-- DIAGNOSIS -->
     <section class="view" id="view-diagnosis">
       <div class="page-header">
-        <div>
-          <div class="page-title">Diagnóstico</div>
-          <div class="page-sub">Análisis científico generado por inteligencia artificial</div>
-        </div>
+        <div><div class="page-title">Diagnóstico</div><div class="page-sub">Análisis científico generado por inteligencia artificial</div></div>
       </div>
       <div class="content">
         <div class="card" style="margin-bottom:20px">
           <div style="display:flex;gap:16px;align-items:flex-end">
             <div class="form-group" style="flex:1">
               <label>Seleccionar atleta para diagnosticar</label>
-              <select id="diag-athlete-select">
-                <option value="">— Selecciona un atleta —</option>
-              </select>
+              <select id="diag-athlete-select"><option value="">— Selecciona un atleta —</option></select>
             </div>
             <button class="btn btn-primary" onclick="runDiagnosis()">◐ Generar diagnóstico</button>
           </div>
@@ -478,22 +390,15 @@
     <!-- REPORTS -->
     <section class="view" id="view-reports">
       <div class="page-header">
-        <div>
-          <div class="page-title">Informes PDF</div>
-          <div class="page-sub">Exportación de reportes técnicos por atleta</div>
-        </div>
+        <div><div class="page-title">Informes PDF</div><div class="page-sub">Exportación de reportes técnicos por atleta</div></div>
       </div>
       <div class="content">
         <div class="card">
           <div class="form-group" style="margin-bottom:20px">
             <label>Seleccionar atleta</label>
-            <select id="report-athlete-select">
-              <option value="">— Selecciona un atleta —</option>
-            </select>
+            <select id="report-athlete-select"><option value="">— Selecciona un atleta —</option></select>
           </div>
-          <div style="display:flex;gap:12px">
-            <button class="btn btn-primary" onclick="exportPDF()">⬇ Exportar informe PDF</button>
-          </div>
+          <div style="display:flex;gap:12px"><button class="btn btn-primary" onclick="exportPDF()">Exportar informe PDF</button></div>
         </div>
         <div id="reports-list" class="athlete-grid" style="margin-top:20px"></div>
       </div>
@@ -521,52 +426,28 @@
         </div>
         <div class="form-group">
           <label>Sexo *</label>
-          <select id="a_sex">
-            <option value="">Seleccionar</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-          </select>
+          <select id="a_sex"><option value="">Seleccionar</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option></select>
         </div>
         <div class="form-group">
           <label>Deporte *</label>
           <select id="a_sport">
             <option value="">Seleccionar</option>
-            <optgroup label="Deportes de combate">
-              <option>Taekwondo</option><option>Judo</option><option>Boxeo</option><option>Lucha</option><option>Karate</option><option>Esgrima</option>
-            </optgroup>
-            <optgroup label="Atletismo">
-              <option>Sprint (100m-400m)</option><option>Mediofondo (800m-1500m)</option><option>Fondo (5000m+)</option><option>Saltos</option><option>Lanzamientos</option><option>Marcha</option>
-            </optgroup>
-            <optgroup label="Deportes de equipo">
-              <option>Fútbol</option><option>Baloncesto</option><option>Voleibol</option><option>Balonmano</option><option>Hockey</option><option>Rugby</option><option>Waterpolo</option>
-            </optgroup>
-            <optgroup label="Acuáticos">
-              <option>Natación</option><option>Natación sincronizada</option><option>Clavados</option>
-            </optgroup>
-            <optgroup label="Raqueta">
-              <option>Tenis</option><option>Badminton</option><option>Tenis de mesa</option>
-            </optgroup>
-            <optgroup label="Cíclicos">
-              <option>Ciclismo</option><option>Remo</option><option>Kayak/Canoa</option><option>Triatlón</option>
-            </optgroup>
-            <optgroup label="Otros">
-              <option>Gimnasia artística</option><option>Gimnasia rítmica</option><option>Patinaje</option><option>Halterofilia</option><option>Tiro</option>
-            </optgroup>
+            <optgroup label="Deportes de combate"><option>Taekwondo</option><option>Judo</option><option>Boxeo</option><option>Lucha</option><option>Karate</option><option>Esgrima</option></optgroup>
+            <optgroup label="Atletismo"><option>Sprint (100m-400m)</option><option>Mediofondo (800m-1500m)</option><option>Fondo (5000m+)</option><option>Saltos</option><option>Lanzamientos</option><option>Marcha</option></optgroup>
+            <optgroup label="Deportes de equipo"><option>Fútbol</option><option>Baloncesto</option><option>Voleibol</option><option>Balonmano</option><option>Hockey</option><option>Rugby</option><option>Waterpolo</option></optgroup>
+            <optgroup label="Acuáticos"><option>Natación</option><option>Natación sincronizada</option><option>Clavados</option></optgroup>
+            <optgroup label="Raqueta"><option>Tenis</option><option>Badminton</option><option>Tenis de mesa</option></optgroup>
+            <optgroup label="Cíclicos"><option>Ciclismo</option><option>Remo</option><option>Kayak/Canoa</option><option>Triatlón</option></optgroup>
+            <optgroup label="Otros"><option>Gimnasia artística</option><option>Gimnasia rítmica</option><option>Patinaje</option><option>Halterofilia</option><option>Tiro</option></optgroup>
           </select>
         </div>
         <div class="form-group">
           <label>Nivel competitivo *</label>
-          <select id="a_level">
-            <option value="">Seleccionar</option>
-            <option>Iniciación</option><option>Formación</option><option>Competencia nacional</option><option>Alto rendimiento nacional</option><option>Alto rendimiento internacional</option><option>Élite olímpico/mundial</option>
-          </select>
+          <select id="a_level"><option value="">Seleccionar</option><option>Iniciación</option><option>Formación</option><option>Competencia nacional</option><option>Alto rendimiento nacional</option><option>Alto rendimiento internacional</option><option>Élite olímpico/mundial</option></select>
         </div>
         <div class="form-group">
           <label>Categoría / Edad</label>
-          <select id="a_category">
-            <option value="">Seleccionar</option>
-            <option>Cadete (12-14)</option><option>Juvenil (15-17)</option><option>Sub-20</option><option>Sub-23</option><option>Adulto (18+)</option><option>Máster</option>
-          </select>
+          <select id="a_category"><option value="">Seleccionar</option><option>Cadete (12-14)</option><option>Juvenil (15-17)</option><option>Sub-20</option><option>Sub-23</option><option>Adulto (18+)</option><option>Máster</option></select>
         </div>
         <div class="form-group">
           <label>Club / Federación</label>
@@ -575,6 +456,28 @@
         <div class="form-group">
           <label>País</label>
           <input type="text" id="a_country" placeholder="Ej: Colombia">
+        </div>
+        <!-- NUEVOS CAMPOS: EVENTO Y PERIODIZACIÓN -->
+        <div class="form-group">
+          <label>Evento objetivo</label>
+          <input type="text" id="a_event" placeholder="Ej: Campeonato Nacional, Juegos Olímpicos, Panamericanos">
+        </div>
+        <div class="form-group">
+          <label>Fecha del evento</label>
+          <input type="date" id="a_eventDate">
+        </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label>Modelo de periodización</label>
+          <select id="a_periodModel">
+            <option value="">Seleccionar modelo</option>
+            <option value="ATR (Issurin) — Acumulación, Transformación, Realización">ATR (Issurin) — Acumulación, Transformación, Realización</option>
+            <option value="Tradicional (Matveev) — Preparatorio General, Preparatorio Especial, Competitivo, Transición">Tradicional (Matveev) — Preparatorio General, Preparatorio Especial, Competitivo, Transición</option>
+            <option value="Por Modelamiento (Seirul·lo/Agudelo) — Modelo competitivo, brechas individuales, diseño inverso">Por Modelamiento (Seirul·lo/Agudelo) — Modelo competitivo, brechas individuales, diseño inverso</option>
+            <option value="Bloques Concentrados (Verkhoshansky) — Cargas concentradas unidireccionales por bloque">Bloques Concentrados (Verkhoshansky) — Cargas concentradas unidireccionales por bloque</option>
+            <option value="Ondulante (DUP/WUP) — Variación diaria o semanal de volumen e intensidad">Ondulante (DUP/WUP) — Variación diaria o semanal de volumen e intensidad</option>
+            <option value="Periodización Inversa — De intensidad específica hacia volumen general">Periodización Inversa — De intensidad específica hacia volumen general</option>
+            <option value="Periodización Táctica — Microciclo morfológico basado en modelo de juego">Periodización Táctica — Microciclo morfológico basado en modelo de juego</option>
+          </select>
         </div>
         <div class="form-group" style="grid-column:1/-1">
           <label>Historial / Antecedentes</label>
@@ -589,7 +492,6 @@
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
@@ -604,11 +506,9 @@ const DB = {
 
 const AVATAR_COLORS = ['rgba(0,229,176,0.2)','rgba(0,112,243,0.2)','rgba(255,107,53,0.15)','rgba(138,79,255,0.2)','rgba(255,165,2,0.15)'];
 const AVATAR_TEXT = ['var(--accent)','#60a5fa','#fb923c','#c084fc','var(--warn)'];
-
 let editingId = null;
 
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
-
 function toast(msg,type='success'){
   const t=document.getElementById('toast');
   t.textContent=msg; t.className='toast '+type; t.classList.add('show');
@@ -632,7 +532,7 @@ function showView(v){
 function openNewAthleteModal(){
   editingId=null;
   document.getElementById('modal-title').textContent='Nuevo atleta';
-  ['a_name','a_dob','a_sex','a_sport','a_level','a_category','a_club','a_country','a_history'].forEach(id=>{
+  ['a_name','a_dob','a_sex','a_sport','a_level','a_category','a_club','a_country','a_event','a_eventDate','a_periodModel','a_history'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.value='';
   });
   document.getElementById('modal-athlete').classList.add('open');
@@ -653,6 +553,9 @@ function saveAthlete(){
     category: document.getElementById('a_category').value,
     club: document.getElementById('a_club').value,
     country: document.getElementById('a_country').value,
+    event: document.getElementById('a_event').value,
+    eventDate: document.getElementById('a_eventDate').value,
+    periodModel: document.getElementById('a_periodModel').value,
     history: document.getElementById('a_history').value,
     createdAt: editingId ? DB.getAthlete(editingId)?.createdAt : new Date().toISOString(),
     tests: editingId ? DB.getAthlete(editingId)?.tests : {},
@@ -661,11 +564,7 @@ function saveAthlete(){
   if(editingId) DB.updateAthlete(editingId, obj);
   else DB.addAthlete(obj);
   closeModal();
-  renderAthletes();
-  populateAthleteSelects();
-  updateSidebarCount();
-  renderDashboard();
-  initKey();
+  renderAthletes(); populateAthleteSelects(); updateSidebarCount(); renderDashboard();
   toast(editingId?'Atleta actualizado':'Atleta registrado correctamente');
 }
 
@@ -681,6 +580,9 @@ function editAthlete(id){
   document.getElementById('a_category').value=a.category||'';
   document.getElementById('a_club').value=a.club||'';
   document.getElementById('a_country').value=a.country||'';
+  document.getElementById('a_event').value=a.event||'';
+  document.getElementById('a_eventDate').value=a.eventDate||'';
+  document.getElementById('a_periodModel').value=a.periodModel||'';
   document.getElementById('a_history').value=a.history||'';
   document.getElementById('modal-athlete').classList.add('open');
 }
@@ -696,7 +598,7 @@ function renderAthletes(){
   const list=document.getElementById('athletes-list');
   const athletes=DB.athletes;
   if(!athletes.length){
-    list.innerHTML=`<div class="empty-state"><div class="empty-icon">◉</div><div class="empty-title">No hay atletas registrados</div><div class="empty-sub">Agrega tu primer atleta para comenzar</div></div>`;
+    list.innerHTML='<div class="empty-state"><div class="empty-icon">◉</div><div class="empty-title">No hay atletas registrados</div><div class="empty-sub">Agrega tu primer atleta para comenzar</div></div>';
     return;
   }
   const grid=document.createElement('div');
@@ -707,24 +609,7 @@ function renderAthletes(){
     const hasTests=a.tests&&Object.keys(a.tests).length>0;
     const hasDiag=!!a.diagnosis;
     const age=a.dob?Math.floor((Date.now()-new Date(a.dob))/(365.25*24*3600*1000)):null;
-    grid.innerHTML+=`<div class="athlete-card">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div class="athlete-avatar" style="background:${AVATAR_COLORS[ci]};color:${AVATAR_TEXT[ci]}">${initials}</div>
-        <div style="display:flex;gap:6px">
-          <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();editAthlete('${a.id}')">✏️</button>
-          <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteAthlete('${a.id}')">✕</button>
-        </div>
-      </div>
-      <div class="athlete-name">${a.name}</div>
-      <div class="athlete-meta">${a.sex||''}${age?` · ${age} años`:''}${a.club?' · '+a.club:''}</div>
-      <div class="athlete-tags">
-        <span class="tag tag-sport">${a.sport}</span>
-        <span class="tag tag-level">${a.level}</span>
-        ${a.category?`<span class="tag tag-cat">${a.category}</span>`:''}
-        ${hasTests?`<span class="tag" style="background:rgba(0,229,176,0.1);color:var(--accent)">Tests ✓</span>`:''}
-        ${hasDiag?`<span class="tag" style="background:rgba(0,112,243,0.15);color:#60a5fa">IA ✓</span>`:''}
-      </div>
-    </div>`;
+    grid.innerHTML+='<div class="athlete-card"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div class="athlete-avatar" style="background:'+AVATAR_COLORS[ci]+';color:'+AVATAR_TEXT[ci]+'">'+initials+'</div><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();editAthlete(\''+a.id+'\')">✏️</button><button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteAthlete(\''+a.id+'\')">✕</button></div></div><div class="athlete-name">'+a.name+'</div><div class="athlete-meta">'+a.sex+(age?' · '+age+' años':'')+(a.club?' · '+a.club:'')+'</div><div class="athlete-tags"><span class="tag tag-sport">'+a.sport+'</span><span class="tag tag-level">'+a.level+'</span>'+(a.category?'<span class="tag tag-cat">'+a.category+'</span>':'')+(a.event?'<span class="tag" style="background:rgba(138,79,255,0.15);color:#c084fc">'+a.event+'</span>':'')+(hasTests?'<span class="tag" style="background:rgba(0,229,176,0.1);color:var(--accent)">Tests ✓</span>':'')+(hasDiag?'<span class="tag" style="background:rgba(0,112,243,0.15);color:#60a5fa">IA ✓</span>':'')+'</div></div>';
   });
   list.innerHTML='';
   list.appendChild(grid);
@@ -732,37 +617,24 @@ function renderAthletes(){
 
 function populateAthleteSelects(){
   const athletes=DB.athletes;
-  const opts='<option value="">— Selecciona un atleta —</option>'+athletes.map(a=>`<option value="${a.id}">${a.name} — ${a.sport}</option>`).join('');
+  const opts='<option value="">— Selecciona un atleta —</option>'+athletes.map(a=>'<option value="'+a.id+'">'+a.name+' — '+a.sport+'</option>').join('');
   ['tests-athlete-select','diag-athlete-select','report-athlete-select'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.innerHTML=opts;
   });
 }
 
-function updateSidebarCount(){
-  document.getElementById('sidebarCount').textContent=DB.athletes.length;
-}
+function updateSidebarCount(){ document.getElementById('sidebarCount').textContent=DB.athletes.length; }
 
 function renderDashboard(){
   const athletes=DB.athletes;
   document.getElementById('dash-total').textContent=athletes.length;
   document.getElementById('dash-tested').textContent=athletes.filter(a=>a.tests&&Object.keys(a.tests).length).length;
   document.getElementById('dash-diag').textContent=athletes.filter(a=>a.diagnosis).length;
-  const sports=new Set(athletes.map(a=>a.sport)).size;
-  document.getElementById('dash-sports').textContent=sports;
+  document.getElementById('dash-sports').textContent=new Set(athletes.map(a=>a.sport)).size;
   const recent=athletes.slice(0,4);
   const rl=document.getElementById('dash-recent-list');
   if(!recent.length){ rl.innerHTML='<div style="color:var(--text2);font-size:13px">Sin atletas aún.</div>'; return; }
-  rl.innerHTML=recent.map(a=>`
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div>
-        <div style="font-size:14px;font-weight:500">${a.name}</div>
-        <div style="font-size:12px;color:var(--text2)">${a.sport} · ${a.level}</div>
-      </div>
-      <div style="display:flex;gap:6px">
-        ${a.tests&&Object.keys(a.tests).length?'<span class="badge badge-success">Tests</span>':''}
-        ${a.diagnosis?'<span class="badge" style="background:rgba(0,112,243,0.15);color:#60a5fa">IA</span>':''}
-      </div>
-    </div>`).join('');
+  rl.innerHTML=recent.map(a=>'<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:14px;font-weight:500">'+a.name+'</div><div style="font-size:12px;color:var(--text2)">'+a.sport+' · '+a.level+(a.event?' · '+a.event:'')+'</div></div><div style="display:flex;gap:6px">'+(a.tests&&Object.keys(a.tests).length?'<span class="badge badge-success">Tests</span>':'')+(a.diagnosis?'<span class="badge" style="background:rgba(0,112,243,0.15);color:#60a5fa">IA</span>':'')+'</div></div>').join('');
 }
 
 const TEST_FIELDS=['squat1rm','bench1rm','dead1rm','isometric','relforce','pullups','chinups','cmj','sj','dj','abalakov','rsi','mbthrow','peakpow','relpow','vo2max','navette','6min','cooper','hrmax','hrrest','wingate','rsa','lactate','s10','s20','s30','s60','vmax','rt_simple','rt_complex','blazepod','sitreach','hiprotation','trunkflex','shouldermob','plantarflex','weight','height','bmi','bodyfat','leanmass','bonemass','bodywater','wingspan','ttest','illinois','balance','eyehand','movefreq','notes'];
@@ -772,9 +644,7 @@ function loadAthleteTests(){
   document.getElementById('tests-form-container').style.display=id?'block':'none';
   if(!id) return;
   const a=DB.getAthlete(id);
-  TEST_FIELDS.forEach(f=>{
-    const el=document.getElementById('t_'+f); if(el) el.value=(a&&a.tests&&a.tests[f]!=null)?a.tests[f]:'';
-  });
+  TEST_FIELDS.forEach(f=>{ const el=document.getElementById('t_'+f); if(el) el.value=(a&&a.tests&&a.tests[f]!=null)?a.tests[f]:''; });
 }
 
 function saveTests(){
@@ -790,9 +660,7 @@ function saveTests(){
   toast('Tests guardados correctamente');
 }
 
-function clearTests(){
-  TEST_FIELDS.forEach(f=>{ const el=document.getElementById('t_'+f); if(el) el.value=''; });
-}
+function clearTests(){ TEST_FIELDS.forEach(f=>{ const el=document.getElementById('t_'+f); if(el) el.value=''; }); }
 
 function switchTab(name,btn){
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
@@ -801,101 +669,54 @@ function switchTab(name,btn){
   btn.classList.add('active');
 }
 
+// ═══════════════════════════════════════════
+// DIAGNÓSTICO IA — PROMPT PROFESIONAL
+// ═══════════════════════════════════════════
+
 async function runDiagnosis(){
   const id=document.getElementById('diag-athlete-select').value;
   if(!id){toast('Selecciona un atleta','error');return}
   const a=DB.getAthlete(id);
   const out=document.getElementById('diag-output');
-  const btn=document.getElementById('btn-diag');
   const ci=(DB.athletes.indexOf(a))%5;
   const ini=a.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-  if(btn){btn.disabled=true;btn.textContent='Generando...';}
 
-  out.innerHTML=`<div class="diag-wrap" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
-    <div style="padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px">
-      <div style="width:42px;height:42px;border-radius:50%;background:${AVATAR_COLORS[ci]};color:${AVATAR_TEXT[ci]};display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:13px;flex-shrink:0">${ini}</div>
-      <div><div style="font-size:15px;font-weight:500">${a.name}</div><div style="font-size:11px;color:var(--text2)">${a.sport} · ${a.level}${a.category?' · '+a.category:''}</div></div>
-    </div>
-    <div class="diag-body" id="diag-body-inner" style="padding:20px">
-      <div style="text-align:center;padding:50px 20px">
-        <div style="width:48px;height:48px;border:2px solid var(--accent);border-radius:50%;margin:0 auto 14px;animation:pulse 1.4s ease infinite"></div>
-        <div style="font-size:13px;font-weight:500">Analizando perfil físico...</div>
-        <div style="font-size:11px;color:var(--text2);margin-top:6px">Consultando referencias científicas internacionales</div>
-      </div>
-    </div>
-  </div>`;
+  out.innerHTML='<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden"><div style="padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px"><div style="width:42px;height:42px;border-radius:50%;background:'+AVATAR_COLORS[ci]+';color:'+AVATAR_TEXT[ci]+';display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:13px;flex-shrink:0">'+ini+'</div><div><div style="font-size:15px;font-weight:500">'+a.name+'</div><div style="font-size:11px;color:var(--text2)">'+a.sport+' · '+a.level+(a.category?' · '+a.category:'')+'</div></div></div><div id="diag-body-inner" style="padding:20px"><div style="text-align:center;padding:50px 20px"><div style="width:48px;height:48px;border:2px solid var(--accent);border-radius:50%;margin:0 auto 14px;animation:pulse 1.4s ease infinite"></div><div style="font-size:13px;font-weight:500">Analizando perfil físico...</div><div style="font-size:11px;color:var(--text2);margin-top:6px">Consultando referencias científicas internacionales</div></div></div></div>';
 
   const age=a.dob?Math.floor((Date.now()-new Date(a.dob))/(365.25*24*3600*1000)):null;
   const t=a.tests||{};
-  const testsStr=Object.entries(t).filter(([k,v])=>k!=='notes'&&v!=='').map(([k,v])=>`  - ${k}: ${v}`).join('\n');
-  const notesStr=t.notes?`\nObservaciones: ${t.notes}`:'';
+  const testsStr=Object.entries(t).filter(([k,v])=>k!=='notes'&&v!=='').map(([k,v])=>'  - '+k+': '+v).join('\n');
+  const notesStr=t.notes?'\nObservaciones: '+t.notes:'';
 
-  const prompt=`Eres un fisiólogo deportivo PhD con experiencia olímpica. Genera un DIAGNÓSTICO TÉCNICO PROFESIONAL en español.
+  // Calcular semanas hasta el evento
+  let weeksToEvent='No definido';
+  if(a.eventDate){
+    const diff=Math.ceil((new Date(a.eventDate)-new Date())/(7*24*3600*1000));
+    weeksToEvent=diff>0?diff+' semanas':'Evento pasado';
+  }
 
-ATLETA: ${a.name} | ${a.sex||'N/E'} | ${age?age+' años':'N/E'} | ${a.sport} | ${a.level} | ${a.category||'N/E'} | Club: ${a.club||'N/E'} | ${a.country||'N/E'}
-Antecedentes: ${a.history||'Sin registrar'}
-
-TESTS:
-${testsStr||'Sin tests registrados.'}
-${notesStr}
-
-ESTRUCTURA OBLIGATORIA (usa ## para cada sección):
-
-## 1. RESUMEN EJECUTIVO
-Párrafo técnico con clasificación global del atleta (percentil estimado vs élite de su deporte/categoría).
-
-## 2. PERFIL DE CAPACIDADES
-Analiza CADA test registrado comparando contra baremos internacionales del deporte. Clasifica: ÓPTIMO / ACEPTABLE / DEFICIENTE.
-
-## 3. FORTALEZAS Y BRECHAS CRÍTICAS
-Top 3 fortalezas y Top 3 brechas que limitan el rendimiento competitivo.
-
-## 4. PLAN DE ACCIÓN PRIORITARIO
-5-7 recomendaciones específicas con series, repeticiones, métodos concretos. Prioriza las brechas críticas.
-
-## 5. KPIs Y METAS A 8 SEMANAS
-Tabla con indicador actual → meta → método de evaluación.
-
-## 6. REFERENCIAS CIENTÍFICAS
-Mínimo 5 referencias reales: Autor (Año). Título. Revista, Vol(N°), pp. De journals indexados (JSCR, IJSPP, MSSE, EJSS, BJSM).
-
-Sé DIRECTO, técnico y específico. No uses frases genéricas. Cada afirmación debe estar respaldada por evidencia.`;
-
-DATOS DEL ATLETA:
-- Nombre: ${a.name}
-- Sexo: ${a.sex||'No especificado'}
-- Edad: ${age?age+' años':'No especificada'}
-- Deporte: ${a.sport}
-- Nivel: ${a.level}
-- Categoría: ${a.category||'No especificada'}
-- Club: ${a.club||'No especificado'}
-- País: ${a.country||'No especificado'}
-- Antecedentes: ${a.history||'Sin antecedentes'}
-
-RESULTADOS DE TESTS FÍSICOS:
-${testsStr||'No se han registrado tests físicos.'}
-${notesStr}
-
-Genera el diagnóstico con esta estructura:
-
-## RESUMEN EJECUTIVO
-## PERFIL DE CAPACIDADES FÍSICAS
-## FORTALEZAS IDENTIFICADAS
-## BRECHAS DE RENDIMIENTO
-## ANÁLISIS ESPECÍFICO DEL DEPORTE
-## RECOMENDACIONES DE ENTRENAMIENTO
-## KPIs DE SEGUIMIENTO
-## CONCLUSIÓN TÉCNICA
-
-Sé técnico, científico y preciso.
-
-## REFERENCIAS Y SOPORTES CIENTÍFICOS
-Incluye obligatoriamente al final una sección con 6-10 referencias bibliográficas reales y validadas que respalden los análisis y recomendaciones. Formato:
-- Artículos de revistas indexadas (Journal of Strength and Conditioning Research, Int. Journal of Sports Physiology and Performance, Medicine & Science in Sports & Exercise, European Journal of Sport Science)
-- Libros especializados en fisiología del ejercicio y entrenamiento deportivo
-- Guías de organismos internacionales (ACSM, NSCA, COI)
-- Formato: Autor(es) (Año). Título. Revista/Editorial, Vol(N°), pp.
-Las referencias deben ser pertinentes a las capacidades evaluadas y al deporte analizado.`;
+  const prompt='Eres un fisiólogo deportivo PhD con experiencia en ciclos olímpicos y mundiales. Genera un DIAGNÓSTICO TÉCNICO PROFESIONAL orientado a la preparación competitiva.\n\n'+
+  'ATLETA: '+a.name+' | '+a.sex+' | '+(age?age+' años':'N/E')+' | '+a.sport+' | '+a.level+' | '+(a.category||'N/E')+'\n'+
+  'Club: '+(a.club||'N/E')+' | País: '+(a.country||'N/E')+'\n'+
+  'EVENTO OBJETIVO: '+(a.event||'No definido')+'\n'+
+  'FECHA DEL EVENTO: '+(a.eventDate||'No definida')+' ('+weeksToEvent+' desde hoy)\n'+
+  'MODELO DE PERIODIZACIÓN: '+(a.periodModel||'No seleccionado — usa el más apropiado para el deporte')+'\n'+
+  'Antecedentes: '+(a.history||'Sin registrar')+'\n\n'+
+  'TESTS FÍSICOS:\n'+(testsStr||'Sin tests registrados.')+'\n'+notesStr+'\n\n'+
+  'ESTRUCTURA OBLIGATORIA (usa ## para secciones, sé DIRECTO y técnico):\n\n'+
+  '## 1. RESUMEN EJECUTIVO\n'+
+  'Clasificación global del atleta (percentil estimado vs élite de su deporte/categoría). Estado actual en una frase.\n\n'+
+  '## 2. PERFIL DE CAPACIDADES vs BAREMOS\n'+
+  'Analiza CADA test contra baremos internacionales del deporte. Clasifica: ÓPTIMO / ACEPTABLE / DEFICIENTE.\n\n'+
+  '## 3. FORTALEZAS Y BRECHAS CRÍTICAS\n'+
+  'Top 3 fortalezas y Top 3 brechas que limitan el rendimiento competitivo.\n\n'+
+  '## 4. PLAN DE PREPARACIÓN HACIA EL EVENTO\n'+
+  'Usando el modelo de periodización seleccionado, diseña la distribución de fases/bloques desde HOY hasta el evento. Incluye: nombre de cada fase, duración en semanas, objetivo principal, métodos de entrenamiento específicos con series/reps/intensidades.\n\n'+
+  '## 5. KPIs Y METAS PARA EL EVENTO\n'+
+  'Tabla: Indicador | Valor actual | Meta para el evento | Método de evaluación\n\n'+
+  '## 6. REFERENCIAS CIENTÍFICAS\n'+
+  '5-7 referencias reales: Autor (Año). Título. Revista, Vol(N°), pp. De journals indexados (JSCR, IJSPP, MSSE, EJSS, BJSM).\n\n'+
+  'REGLAS: Sé técnico, directo, sin frases genéricas. Cada recomendación debe tener dosis concreta (series, reps, %, método). Adapta TODO al modelo de periodización indicado.';
 
   try {
     const res=await fetch('/.netlify/functions/ai',{
@@ -903,8 +724,8 @@ Las referencias deben ser pertinentes a las capacidades evaluadas y al deporte a
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:1600,
-        system:'Eres un experto en ciencias del deporte y medicina deportiva para alto rendimiento olímpico. Respondes siempre en español. Usas formato markdown con ## para secciones.',
+        max_tokens:1800,
+        system:'Eres un fisiólogo deportivo PhD especialista en alto rendimiento olímpico. Respondes siempre en español. Usas formato markdown con ## para secciones. Eres técnico, preciso y orientado a resultados competitivos.',
         messages:[{role:'user',content:prompt}]
       })
     });
@@ -917,14 +738,12 @@ Las referencias deben ser pertinentes a las capacidades evaluadas y al deporte a
     toast('Diagnóstico generado');
   } catch(e){
     const inner=document.getElementById('diag-body-inner');
-    if(inner)inner.innerHTML=`<div style="color:var(--danger);padding:20px;font-size:12px">Error: ${e.message}</div>`;
+    if(inner)inner.innerHTML='<div style="color:var(--danger);padding:20px;font-size:12px">Error: '+e.message+'</div>';
     toast('Error en diagnóstico IA','error');
   }
-  if(btn){btn.disabled=false;btn.textContent='◐ Generar diagnóstico';}
 }
 
 function renderDiagnosisResult(id,a,text,ci,ini){
-  const initials=ini;
   const out=document.getElementById('diag-output');
   const html=text
     .replace(/## (.+)/g,'<h2>$1</h2>')
@@ -934,39 +753,24 @@ function renderDiagnosisResult(id,a,text,ci,ini){
     .replace(/^- (.+)/gm,'<li>$1</li>')
     .replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>');
 
-  out.innerHTML=`<div class="diag-container">
-    <div class="diag-header">
-      <div class="athlete-avatar" style="background:${AVATAR_COLORS[ci]};color:${AVATAR_TEXT[ci]};width:48px;height:48px;font-size:16px;flex-shrink:0">${initials}</div>
-      <div class="diag-athlete-info"><h3>${a.name}</h3><p>${a.sport} · ${a.level}${a.category?' · '+a.category:''}</p></div>
-      <div class="diag-actions">
-        <button class="btn btn-ghost btn-sm" onclick="runDiagnosis()">↺ Regenerar</button>
-        <button class="btn btn-primary btn-sm" onclick="exportPDFForId('${id}')">⬇ PDF</button>
-      </div>
-    </div>
-    <div class="diag-body"><div class="diag-result">${html}</div></div>
-  </div>`;
-  toast('Diagnóstico generado correctamente');
+  out.innerHTML='<div class="diag-container"><div class="diag-header"><div class="athlete-avatar" style="background:'+AVATAR_COLORS[ci]+';color:'+AVATAR_TEXT[ci]+';width:48px;height:48px;font-size:16px;flex-shrink:0">'+ini+'</div><div class="diag-athlete-info"><h3>'+a.name+'</h3><p>'+a.sport+' · '+a.level+(a.category?' · '+a.category:'')+(a.event?' · Objetivo: '+a.event:'')+'</p></div><div class="diag-actions"><button class="btn btn-ghost btn-sm" onclick="runDiagnosis()">Regenerar</button><button class="btn btn-primary btn-sm" onclick="exportPDFForId(\''+id+'\')">PDF</button></div></div><div class="diag-body"><div class="diag-result">'+html+'</div></div></div>';
   renderDashboard();
   renderReportsList();
 }
+
+// ═══════════════════════════════════════════
+// PDF EXPORT
+// ═══════════════════════════════════════════
 
 function renderReportsList(){
   const list=document.getElementById('reports-list');
   if(!list) return;
   const athletes=DB.athletes.filter(a=>a.diagnosis);
-  if(!athletes.length){
-    list.innerHTML='<div style="color:var(--text2);font-size:13px">Sin diagnósticos generados aún. Genera un diagnóstico IA primero.</div>';
-    return;
-  }
+  if(!athletes.length){ list.innerHTML='<div style="color:var(--text2);font-size:13px">Sin diagnósticos generados aún.</div>'; return; }
   list.innerHTML=athletes.map((a,i)=>{
     const ci=i%5;
     const initials=a.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-    return `<div class="athlete-card" onclick="exportPDFForId('${a.id}')">
-      <div class="athlete-avatar" style="background:${AVATAR_COLORS[ci]};color:${AVATAR_TEXT[ci]}">${initials}</div>
-      <div class="athlete-name">${a.name}</div>
-      <div class="athlete-meta">${a.sport} · ${a.level}</div>
-      <div style="margin-top:10px;font-size:12px;color:var(--accent)">⬇ Clic para exportar PDF</div>
-    </div>`;
+    return '<div class="athlete-card" onclick="exportPDFForId(\''+a.id+'\')"><div class="athlete-avatar" style="background:'+AVATAR_COLORS[ci]+';color:'+AVATAR_TEXT[ci]+'">'+initials+'</div><div class="athlete-name">'+a.name+'</div><div class="athlete-meta">'+a.sport+' · '+a.level+'</div><div style="margin-top:10px;font-size:12px;color:var(--accent)">Clic para exportar PDF</div></div>';
   }).join('');
 }
 
@@ -982,8 +786,7 @@ function sanitize(str){
     .replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i').replace(/ó/g,'o').replace(/ú/g,'u')
     .replace(/Á/g,'A').replace(/É/g,'E').replace(/Í/g,'I').replace(/Ó/g,'O').replace(/Ú/g,'U')
     .replace(/ñ/g,'n').replace(/Ñ/g,'N').replace(/ü/g,'u').replace(/Ü/g,'U')
-    .replace(/·/g,'-').replace(/↺/g,'').replace(/⬇/g,'').replace(/◆/g,'*')
-    .replace(/[^\x00-\x7F]/g,'');
+    .replace(/·/g,'-').replace(/[^\x00-\x7F]/g,'');
 }
 
 function newPage(doc,W,M,name){
@@ -1007,32 +810,27 @@ function exportPDFForId(id){
     const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
     const age=a.dob?Math.floor((Date.now()-new Date(a.dob))/(365.25*24*3600*1000)):null;
     const now=new Date().toLocaleDateString('es-CO',{year:'numeric',month:'long',day:'numeric'});
-
     const W=210; const M=18;
 
-    // ── HEADER ──
+    // HEADER
     doc.setFillColor(10,14,20);
     doc.rect(0,0,W,42,'F');
-
     doc.setTextColor(0,200,155);
     doc.setFontSize(7.5);
     doc.setFont('helvetica','bold');
     doc.text('PERFORMANCELAB  -  DIAGNOSTICO DE RENDIMIENTO DEPORTIVO',M,13);
-
     doc.setTextColor(240,244,248);
     doc.setFontSize(17);
     doc.text(sanitize(a.name), M, 27);
-
     doc.setFontSize(8.5);
     doc.setTextColor(136,153,170);
     const subHead=sanitize(a.sport)+' - '+sanitize(a.level)+(a.category?' - '+sanitize(a.category):'')+' - Generado: '+sanitize(now);
     doc.text(subHead, M, 36);
 
-    // ── INFO BLOCK ──
+    // INFO BLOCK
     let y=52;
     doc.setFillColor(22,32,50);
-    doc.roundedRect(M,y,W-2*M,30,3,3,'F');
-
+    doc.roundedRect(M,y,W-2*M,44,3,3,'F');
     const fields=[
       ['SEXO', sanitize(a.sex)||'N/A'],
       ['EDAD', age?age+' anos':'N/A'],
@@ -1041,23 +839,28 @@ function exportPDFForId(id){
       ['CATEGORIA', sanitize(a.category)||'N/A'],
       ['CLUB', sanitize(a.club)||'N/A'],
       ['PAIS', sanitize(a.country)||'N/A'],
-      ['FECHA', sanitize(now)]
+      ['FECHA', sanitize(now)],
+      ['EVENTO', sanitize(a.event)||'N/A'],
+      ['FECHA EVENTO', sanitize(a.eventDate)||'N/A'],
+      ['PERIODIZACION', (sanitize(a.periodModel)||'N/A').substring(0,30)],
+      ['', '']
     ];
     const colW=(W-2*M)/4;
     fields.forEach((f,i)=>{
+      if(!f[0]) return;
       const col=i%4; const row=Math.floor(i/4);
       const x=M+col*colW+4; const fy=y+8+row*14;
       doc.setTextColor(100,120,140); doc.setFontSize(6); doc.setFont('helvetica','normal');
       doc.text(f[0],x,fy);
       doc.setTextColor(220,235,250); doc.setFontSize(7.5); doc.setFont('helvetica','bold');
-      const val=f[1].length>18?f[1].substring(0,17)+'…':f[1];
+      const val=f[1].length>18?f[1].substring(0,17)+'...':f[1];
       doc.text(val,x,fy+5.5);
     });
 
-    y=90;
+    y=104;
 
-    // ── TESTS ──
-    const t=a.tests||{};
+    // TESTS
+    const te=a.tests||{};
     const TEST_LABELS={
       squat1rm:'1RM Sentadilla (kg)',bench1rm:'1RM Press Banca (kg)',dead1rm:'1RM Peso Muerto (kg)',
       isometric:'Fuerza Isometrica (N)',relforce:'Fuerza Relativa',pullups:'Fondos barra (reps)',chinups:'Dominadas (reps)',
@@ -1066,24 +869,22 @@ function exportPDFForId(id){
       vo2max:'VO2max (mL/kg/min)',navette:'Course Navette (nivel)',cooper:'Cooper (m)',
       s10:'Sprint 10m (s)',s20:'Sprint 20m (s)',s30:'Sprint 30m (s)',vmax:'Vel. maxima (km/h)',
       rt_simple:'T. Reaccion Simple (ms)',rt_complex:'T. Reaccion Complejo (ms)',blazepod:'BlazePod (ms)',
-      sitreach:'Sit & Reach (cm)',hiprotation:'Apertura Cadera (°)',
+      sitreach:'Sit & Reach (cm)',hiprotation:'Apertura Cadera',
       weight:'Peso (kg)',height:'Talla (cm)',bmi:'IMC',bodyfat:'% Grasa',
       leanmass:'Masa Muscular (kg)',bonemass:'Masa Osea (kg)',bodywater:'Agua corporal (%)',
       ttest:'T-Test Agilidad (s)',illinois:'Illinois Run (s)',balance:'Equilibrio (s)'
     };
-    const testEntries=Object.entries(t).filter(([k,v])=>k!=='notes'&&v!==''&&v!=null);
+    const testEntries=Object.entries(te).filter(([k,v])=>k!=='notes'&&v!==''&&v!=null);
 
     if(testEntries.length>0){
       doc.setTextColor(0,200,155); doc.setFontSize(9); doc.setFont('helvetica','bold');
       doc.text('RESULTADOS DE TESTS FISICOS',M,y); y+=5;
       doc.setDrawColor(0,180,130); doc.setLineWidth(0.4);
       doc.line(M,y,W-M,y); y+=7;
-
       const tCols=3; const tColW=(W-2*M)/tCols;
       testEntries.forEach((entry,i)=>{
         const col=i%tCols; const row=Math.floor(i/tCols);
         if(col===0&&row>0&&i>0){
-          // check new page every 3 rows
           if(y+row*8>272){ y=newPage(doc,W,M,a.name); }
         }
         const x=M+col*tColW; const ty=y+(row*8);
@@ -1097,31 +898,27 @@ function exportPDFForId(id){
       if(y>265) y=newPage(doc,W,M,a.name);
     }
 
-    // ── DIAGNOSIS ──
+    // DIAGNOSIS
     doc.setTextColor(0,200,155); doc.setFontSize(9); doc.setFont('helvetica','bold');
     doc.text('DIAGNOSTICO TECNICO - INTELIGENCIA ARTIFICIAL',M,y); y+=5;
     doc.setDrawColor(0,180,130); doc.setLineWidth(0.4);
     doc.line(M,y,W-M,y); y+=7;
 
-    // Clean and parse diagnosis text
     const rawDiag = sanitize(a.diagnosis)
       .replace(/#{1,3} /g,'__HEAD__ ')
       .replace(/\*\*/g,'')
       .replace(/\*/g,'')
-      .replace(/^- /gm,'  • ')
+      .replace(/^- /gm,'  * ')
       .replace(/^\d+\. /gm,(m)=>'  '+m);
 
     const paragraphs = rawDiag.split('\n').filter(l=>l.trim()!='');
-
     doc.setFontSize(8.5); doc.setFont('helvetica','normal'); doc.setTextColor(30,40,55);
 
     for(const para of paragraphs){
       if(y>272) y=newPage(doc,W,M,a.name);
-
       const isHead = para.trim().startsWith('__HEAD__');
       const text = para.replace('__HEAD__','').trim();
       if(!text) continue;
-
       if(isHead){
         if(y>265) y=newPage(doc,W,M,a.name);
         y+=3;
@@ -1142,7 +939,7 @@ function exportPDFForId(id){
       }
     }
 
-    // ── FOOTER on every page ──
+    // FOOTER
     const totalPages=doc.internal.getNumberOfPages();
     for(let p=1;p<=totalPages;p++){
       doc.setPage(p);
@@ -1164,16 +961,10 @@ function exportPDFForId(id){
   }
 }
 
-
-function getKey(){return localStorage.getItem('pl_apikey')||''}
-function saveKey(v){localStorage.setItem('pl_apikey',v.trim());const b=document.getElementById('key-banner');if(b)b.style.display=v.trim()?'none':'flex';toast('API Key guardada')}
-function initKey(){const k=getKey();const inp=document.getElementById('apikey-input');if(inp&&k)inp.value=k;const b=document.getElementById('key-banner');if(b)b.style.display=k?'none':'flex';}
-
 // INIT
 document.addEventListener('DOMContentLoaded',()=>{
   updateSidebarCount();
   renderDashboard();
-  initKey();
   document.getElementById('modal-athlete').addEventListener('click',function(e){
     if(e.target===this) closeModal();
   });
