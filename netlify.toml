@@ -1,6 +1,13 @@
 [build]
   functions = "netlify/functions"
 
+[functions]
+  external_node_modules = ["https"]
+  node_bundler = "esbuild"
+
+[functions."ai"]
+  timeout = 26
+
 [[headers]]
   for = "/*"
   [headers.values]
